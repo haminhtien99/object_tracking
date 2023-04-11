@@ -8,4 +8,5 @@ Các nhiệm vụ nhỏ:
 Mô tả files:
 - single_tracking.py - chạy thử phát hiện vật thể với models có sẵn
 - no1.ipynb : file for task1
+
 Dataset: [VisDrone2019-SOT](https://github.com/VisDrone/VisDrone-Dataset)
