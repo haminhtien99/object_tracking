@@ -2,12 +2,11 @@ import cv2
 import sys
 from glob import glob
 
-from module import read_frame as rf
-from module import track_frame as track
+from modules.module_1 import read_frame as rf
+from modules.module_1 import track_frame as track
 
-root  = '/home/ha/Downloads/VisDrone2019-SOT-val/sequences/'
-folders = glob(root +'/*/')
-path = folders[5]
+path = 'VisDrone2019-VID-val/sequences/uav0000305_00000_v'
+
 (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
 
 if __name__ == '__main__' :
