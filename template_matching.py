@@ -14,6 +14,7 @@ for f in filenames:
     
     full_paths.append(folder+'/'+f)
 roi = take_roi(full_paths[0])
+roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 
 methods = ['cv2.TM_SQDIFF_NORMED', 'cv2.TM_CCORR_NORMED', 'cv2.TM_CCOEFF_NORMED']
 method = methods[2]
