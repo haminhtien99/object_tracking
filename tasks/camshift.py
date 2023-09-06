@@ -1,7 +1,4 @@
 
-# Bị ảnh hưởng nhiều bởi ánh sáng
-# Kích thước vật thể thay đổi thì không nhận diện được
-# Nhầm lẫn khi bắt bám vật thể cho dù vật thể đứng yên
 import numpy as np
 import cv2
 import os
@@ -36,11 +33,11 @@ for path in full_paths[1:]:
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     dst = cv2.calcBackProject([hsv], [0], roi_hist, [0,180], 1)
-    # apply meanshift to get the new location
-    ret, track_window = cv2.meanShift(dst, track_window, term_crit)
+    # apply camshift to get the new location
+    ret, track_window = cv2.CamShift(dst, track_window, term_crit)
     # Draw it on image
-    x,y,w,h = track_window
-    img2 = cv2.rectangle(frame, (x,y), (x+w,y+h), 255, 2)
+    pts = np.int0(cv2.boxPoints(ret))
+    img2 = cv2.polylines(frame,[pts], True, 255, 2)
     cv2.imshow('img2', img2)
     k = cv2.waitKey(1) & 0xff
     if k == 27 : break

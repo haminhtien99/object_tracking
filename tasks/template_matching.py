@@ -1,9 +1,20 @@
 import cv2
 import matplotlib.pyplot as plt
 import os
+
+import sys
+from pathlib import Path
+FILE = Path(__file__).resolve()
+ROOT = FILE.parents[1]  # YOLOv5 root directory
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))  # add ROOT to PATH
+ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 from modules.take_roi import take_roi
 
-folder = 'C:/Users/ABC/Desktop/VisDrone2019-VID-val/sequences/uav0000305_00000_v'
+# import os
+
+
+folder = 'C:/Users/ABC/Desktop/VisDrone2019-VID-val/sequences/uav0000339_00001_v'
 
 list_jpg = os.listdir(folder)
 filenames = [f for f in list_jpg]

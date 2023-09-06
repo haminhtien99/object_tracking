@@ -1,6 +1,7 @@
 import cv2
 import os
 import shutil
+import numpy as np
 ## co le nen can class folder voi hai thuoc tinh images va list_images
 
 def read_frame(path, fps):
@@ -95,3 +96,6 @@ def take_image(folders, outFolder):
         shutil.copy(jpg, outFolder)
 def choose_video_on_demand(Folder):
     return 0
+
+
+    
