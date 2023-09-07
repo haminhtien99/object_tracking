@@ -1,12 +1,15 @@
-# Task : single-object tracking challenge. 
+# Single-object tracking challenge. 
 ***
-Các nhiệm vụ nhỏ:
-- Từ vùng ROI cho trước xác định vật thể : cv2.calcHist
-- Thông qua các frame sau đó xác định vị tiếp theo của vật thể
-- ....
+Tasks - Các bài tập nhỏ:
+- single_tracking: Sử dụng các thuật toán có sẵn của opencv để tracking vật thể với vùng roi cho trước
+- Thử triển khai các thuật toán tracking: MeanShift, CAMShift
+- Triển khai thuật toán Template-matching
+-  
 
-Mô tả files:
-- single_tracking.py - chạy thử phát hiện vật thể với models có sẵn
-- no1.ipynb : file for task1
+Modules - các modules sử dụng trong bài 
+
+ml_classification: Thực hiện phân loại nhóm bằng phương pháp SVM và Perceptron
+
+
 ***
 Dataset: [VisDrone2019-SOT](https://github.com/VisDrone/VisDrone-Dataset)
