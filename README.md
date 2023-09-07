@@ -12,4 +12,4 @@ ml_classification: Thực hiện phân loại nhóm bằng phương pháp SVM v�
 
 
 ***
-Dataset: [VisDrone2019-SOT](https://github.com/VisDrone/VisDrone-Dataset)
+Dataset: [VisDrone2019-VID-val](https://github.com/VisDrone/VisDrone-Dataset)
