@@ -21,7 +21,7 @@ def stackImages(scale, imgArray):
     else:
         for y in range(0, cols):
             if imgArray[0][y].shape[:2] != imgArray[0][0].shape[:2]:
-                    imgArray[0][y]= cv2.resize(imgArray[0][y], (height, width))
+                    imgArray[0][y]= cv2.resize(imgArray[0][y], (width, height))
             if len(imgArray[0][y].shape) == 2: imgArray[0][y] = cv2.cvtColor(imgArray[0][y], cv2.COLOR_GRAY2BGR)
         ver = np.hstack(imgArray[0])
     
