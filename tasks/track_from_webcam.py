@@ -50,7 +50,7 @@ class track_staticROI(staticROI):
                 self.frame = cv2.rectangle(self.frame, self.image_coordinates[0], self.image_coordinates[1], (0,255, 0), 2)
                 cv2.imshow('image', self.frame)
                 key = cv2.waitKey(2)
-            # Close program with keyboard 'q'
+            # Close program with keyboard Esc
             if key == 27:
                 self.capture.release()
                 cv2.destroyAllWindows()
