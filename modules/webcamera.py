@@ -36,7 +36,7 @@ class staticROI(object):
                         self.show_cropped_ROI()
                         # Resume video
                         break
-            # Close program with keyboard 'q'
+            # Close program with keyboard Esc
             if key == 27:
                 self.capture.release()
                 cv2.destroyAllWindows()
