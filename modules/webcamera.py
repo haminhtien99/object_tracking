@@ -15,8 +15,11 @@ class staticROI(object):
             print("cannot open the video capture")
             return
         running = True
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         while running:
             # Read frame
+            
             (self.status, self.frame) = self.capture.read()
             cv2.imshow('image', self.frame)
             key = cv2.waitKey(2)
