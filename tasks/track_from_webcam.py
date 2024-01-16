@@ -38,7 +38,7 @@ class track_staticROI(staticROI):
                     key = cv2.waitKey(2)
                     cv2.imshow('image', self.clone)
                     
-                    if key == ord('\r'):
+                    if key == ord('\r'): # keyboard Enter
                         # Crop and display cropped image
                         self.crop_ROI()
                         self.show_cropped_ROI()
