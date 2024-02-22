@@ -1,88 +1,38 @@
 import cv2
 
-class staticROI(object):
-    def __init__(self):
-        self.capture = cv2.VideoCapture(0)
-
-        # Bounding box reference points and boolean if we are extracting coordinates
-        self.image_coordinates = []
-        self.extract = False
-        self.selected_ROI = False
 
 
-    def update(self):
-        if not self.capture.isOpened():
-            print("cannot open the video capture")
-            return
-        running = True
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-        while running:
-            # Read frame
-            
-            (self.status, self.frame) = self.capture.read()
-            cv2.imshow('image', self.frame)
-            key = cv2.waitKey(2)
+def webcam():
+    capture = cv2.VideoCapture(0)
+    if not  capture.isOpened():
+        print("cannot open the video capture")
+    running = True
+    capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    while running:
+    # Read frame
 
-            # Crop image
-            if key == ord('c'):
-                self.clone = self.frame.copy()
-                cv2.namedWindow('image')
-                cv2.setMouseCallback('image', self.extract_coordinates)
-                while True:
-                    key = cv2.waitKey(2)
-                    cv2.imshow('image', self.clone)
-                    
-                    if key == ord('\r'):
-                        # Crop and display cropped image
-                        self.crop_ROI()
-                        self.show_cropped_ROI()
-                        # Resume video
-                        break
-            # Close program with keyboard Esc
-            if key == 27:
-                self.capture.release()
-                cv2.destroyAllWindows()
-                running = False
-    def extract_coordinates(self, event, x, y, flags, parameters):
-        # Record starting (x,y) coordinates on left mouse button click
-        if event == cv2.EVENT_LBUTTONDOWN:
-            self.image_coordinates = [(x,y)]
-            self.extract = True
+        (status, frame) =  capture.read()
+        cv2.imshow('image',  frame)
+        key = cv2.waitKey(2)
 
-        # Record ending (x,y) coordintes on left mouse bottom release
-        elif event == cv2.EVENT_LBUTTONUP:
-            self.image_coordinates.append((x,y))
-            self.extract = False
+        # Crop image
+        if key == ord('c'):
+            clone =  frame.copy()
+            cv2.namedWindow('image')
+            while True:
+                key = cv2.waitKey(2)
+                bbox = cv2.selectROI('image', clone)
+                Roi = clone[bbox[1]: bbox[1]+ bbox[3], bbox[0]:bbox[0] +bbox[2]]
 
-            self.selected_ROI = True
-
-            # Draw rectangle around ROI
-            cv2.rectangle(self.clone, self.image_coordinates[0], self.image_coordinates[1], (0,255,0), 2)
-
-        # Clear drawing boxes on right mouse button click
-        elif event == cv2.EVENT_RBUTTONDOWN:
-            self.clone = self.frame.copy()
-            self.selected_ROI = False
-
-    def crop_ROI(self):
-        if self.selected_ROI:
-            self.cropped_image = self.frame.copy()
-
-            x1 = self.image_coordinates[0][0]
-            y1 = self.image_coordinates[0][1]
-            x2 = self.image_coordinates[1][0]
-            y2 = self.image_coordinates[1][1]
-
-            self.cropped_image = self.cropped_image[y1:y2, x1:x2]
-
-            print('Cropped image: {} {}'.format(self.image_coordinates[0], self.image_coordinates[1]))
-        else:
-            print('Select ROI to crop before cropping')
-
-    def show_cropped_ROI(self):
-        cv2.imshow('cropped image', self.cropped_image)
-
+                cv2.imshow('roi', Roi)
+                print(f'[x1, y1, x2, y2] [{bbox[0]}, {bbox[1]}, {bbox[0] + bbox[2]}, {bbox[1] + bbox[3]}]')
+                break
+        # Close program with keyboard Esc
+        if key == 27:
+            capture.release()
+            cv2.destroyAllWindows()
+            running = False
 if __name__ == '__main__':
-    static_ROI = staticROI()
-    static_ROI.update()
+    webcam()
+    

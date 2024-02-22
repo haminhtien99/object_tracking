@@ -3,7 +3,8 @@ def take_roi(path_to_img):
     img = cv2.imread(path_to_img)
     imgResize = cv2.resize(img, (1000,1000))
     print(img.shape[0], img.shape[1])
-    bbox = cv2.selectROI(imgResize, False)
+    bbox = cv2.selectROI('Select ROI',imgResize)
+    
     # x, y, w, h = bbox[0], bbox[1], bbox[2], bbox[3]
     x = int(bbox[0] * img.shape[1]/1000)
     y = int(bbox[1] * img.shape[0]/1000)
@@ -15,9 +16,10 @@ def take_roi(path_to_img):
     cv2.destroyAllWindows()
     return roi, bbox, x,y,w,h
 
-path = "C:/Users/ABC/Downloads/Telegram Desktop/Xian_station-CN_GoogleSat_v0.tif"
+# path = "C:/Users/ABC/Desktop/object_tracking/tasks/warpAffine.jpg"
 
 
+path = 'C:/Users/ABC/Downloads/Telegram Desktop/Xian_station-CN_GoogleSat_v0.tif'
 
 
 
